@@ -31,7 +31,7 @@ def entropy_universal(data, target):
   log_result = 0
 
   for i in parsed_value_target:
-    log_result += parsed_value_target[i]/total_value_target * math.log((parsed_value_target[i]/total_value_target), 2)
+    log_result += float(parsed_value_target[i])/total_value_target * math.log((float(parsed_value_target[i])/total_value_target), 2)
   
   return -1 * log_result
 
@@ -48,5 +48,4 @@ n1.addChildren('Overcast', n3)
 n1.addChildren('Rain', n4)
 n2.addChildren('High', n5)
 n2.addChildren('Normal', n6)
-
 print(n1.children['Sunny'].children['High'].label)
