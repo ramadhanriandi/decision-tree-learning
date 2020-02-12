@@ -16,19 +16,22 @@ class Node:
     self.children[attributeValue] = node
 
 
-def entropy(data, target, filter_value_attribute=None):
+def entropy(data, target_attribute, filter_value_attribute=None):
+  parsed_data = data
+
   if filter_value_attribute is not None: 
-    #get parsed_data here
+    #get parsed_data here based on filter_value_attribute only
 
   parsed_value_target = {}
   total_value_target = 0
   
-  for i in data[target]:
+  for i in parsed_data[target_attribute]:
     if i is not None:
       if i not in parsed_value_target:
         parsed_value_target[i] = 1
       else:
         parsed_value_target[i] += 1
+
       total_value_target += 1
   
   log_result = 0
@@ -37,6 +40,27 @@ def entropy(data, target, filter_value_attribute=None):
     log_result += float(parsed_value_target[i])/total_value_target * math.log((float(parsed_value_target[i])/total_value_target), 2)
   
   return -1 * log_result
+
+# hasn't handle after universal entropy
+def information_gain(data, previous_entropy_result, previous_attribute, target_attribute):
+  gain_result = 0
+  attribute_entropy_result = 0
+  parsed_attribute_count = {}
+  total_attribute_count = 0
+  
+  for i in data[attribute]:
+    if i is not None:
+      if i not in parsed_attribute_count:
+        parsed_attribute_count[i] = 1
+      else:
+        parsed_attribute_count[i] += 1
+
+      total_value_target += 1
+
+  for i in parsed_attribute_count:
+    attribute_entropy_result += float(parsed_attribute_count[i])/total_attribute_count * entropy(data, target_attribute, previous_attribute)    
+
+  gain_result += previous_entropy_result + (-1 * attribute_entropy_result)
 
 # Try to build a tree
 n1 = Node('Outlook')
