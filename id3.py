@@ -26,6 +26,9 @@ def entropy_universal(data, target):
     else:
       parsed_value_target[i] += 1
   
+  for i in parsed_value_target:
+    total_value_target += parsed_value_target[i]
+
   log_result = 0
 
   for i in parsed_value_target:
