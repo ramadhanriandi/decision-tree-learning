@@ -31,12 +31,3 @@ iris.drop("index",axis=1,inplace=True)
 
 #rename iris columns 
 iris.rename(columns = {0:feature_iris[0],1:feature_iris[1],2:feature_iris[2],3:feature_iris[3],4:"target"}, inplace = True)
-
-#save column name into play_tennis_column
-play_tennis_column = ['day', 'outlook', 'temp', 'humidity', 'wind','play']
-
-#label encode to encode play tennis categorical data
-for col in play_tennis_column:
-    lbl = LabelEncoder()
-    lbl.fit(list(play_tennis[col].values))
-    play_tennis[col] =lbl.transform(list(play_tennis[col].values))
