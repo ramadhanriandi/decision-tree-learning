@@ -21,14 +21,13 @@ def entropy_universal(data, target):
   total_value_target = 0
   
   for i in data[target]:
-    if i not in parsed_value_target:
-      parsed_value_target[i] = 1
-    else:
-      parsed_value_target[i] += 1
+    if i is not None:
+      if i not in parsed_value_target:
+        parsed_value_target[i] = 1
+      else:
+        parsed_value_target[i] += 1
+      total_value_target += 1
   
-  for i in parsed_value_target:
-    total_value_target += parsed_value_target[i]
-
   log_result = 0
 
   for i in parsed_value_target:
