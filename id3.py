@@ -16,7 +16,10 @@ class Node:
     self.children[attributeValue] = node
 
 
-def entropy_universal(data, target):
+def entropy(data, target, filter_value_attribute=None):
+  if filter_value_attribute is not None: 
+    #get parsed_data here
+
   parsed_value_target = {}
   total_value_target = 0
   
