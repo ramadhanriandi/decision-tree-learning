@@ -1,3 +1,5 @@
+import math
+
 class Node:
   def __init__(self, attribute=None, label=None):
     self.attribute = attribute
@@ -13,6 +15,23 @@ class Node:
   def addChildren(self, attributeValue, node):
     self.children[attributeValue] = node
 
+
+def entropy_universal(data, target):
+  parsed_value_target = {}
+  total_value_target = 0
+  
+  for i in data[target]:
+    if i not in parsed_value_target:
+      parsed_value_target[i] = 1
+    else:
+      parsed_value_target[i] += 1
+  
+  log_result = 0
+
+  for i in parsed_value_target:
+    log_result += parsed_value_target[i]/total_value_target * math.log((parsed_value_target[i]/total_value_target), 2)
+  
+  return -1 * log_result
 
 # Try to build a tree
 n1 = Node('Outlook')
